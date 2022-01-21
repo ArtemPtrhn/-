@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+      {% block head %}
+    <meta charset="utf-8">
+    <title>Сайт начинающего верстальщика</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+      {% endblock %}
+  </head>
+   <head>
+  <meta charset="utf-8">
+     <title>Сайт начинающего верстальщика</title>
+     <link rel="stylesheet" href="../start/style.css">
+   </head>
+
+  <body>
+    <header>
+      <h1>Сайт начинающего верстальщика {{username}}</h1>
+      <img class="avatar" src="../static/img/raccoon.svg" width="80" height="80" alt="Аватарка">
+    </header>
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+    <footer>
+      Подвал сайта
+    </footer>
+  </body>
+</html>
