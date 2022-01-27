@@ -32,4 +32,5 @@
   min-height: 120px;
 }
 
-.flash{
+.flash.success{
+  border: 2px solid
