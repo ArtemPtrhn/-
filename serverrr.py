@@ -53,7 +53,7 @@ def form():
     if request.method == 'POST':
         # валидация даннных
         if len(request.form['fullname']) < 5 and not request.form['fullname'].isalpha():
-            flash('Ошибка в имени. Сообщение не отправлено!')
+            flash('Ошибка в имени. Сообщение не отправлено!', category='error')
         else:
             flash('Сообщение принято!')      
         for item in request.form:
