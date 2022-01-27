@@ -8,6 +8,9 @@
 {% block content %}
         <h2>Остались вопросы?</h2>
         <p>Свяжитесь с нами и мы развеем оставшиеся у вас сомнения!</p>
+	{% for msg in get_flashed_messages() %}
+	<div class='flash'>{{ msg }}</div>
+	{% endfor %}	
         <form class="feedback-form" action="{{ url_for('form') }}" method="post">
 			<p>
 				<label for="fullname">Представьтесь, пожалуйста:</label>
