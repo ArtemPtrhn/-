@@ -1,4 +1,11 @@
-from flask import Flask, render_template, url_for, request
+'''
+flash() - на стороне сервера
+get_flashed_messages() - в шаблоне
+
+flash() -> session -> get_flashed_messages() -> шаблон
+'''
+
+from flask import Flask, render_template, url_for, request, flash
 
 
 app = Flask(__name__)
@@ -43,6 +50,11 @@ def start():
 @app.route('/form', methods=['GET', 'POST'])
 def form():
     if request.method == 'POST':
+        # валидация даннных
+        if len(request.form['fullname']) < 5 and not request.form['fullname'].isalpha():
+            flash('Ошибка в имени. Сообщение не отправлено!')
+        else:
+            flash('Сообщение принято!')      
         for item in request.form:
             print(item, request.form[item])
     return render_template('form.html')
