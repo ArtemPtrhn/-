@@ -32,5 +32,10 @@
   min-height: 120px;
 }
 
+.flash {
+  width: 630px;
+  padding: 10px;
+}
+
 .flash.success{
   border: 2px solid
