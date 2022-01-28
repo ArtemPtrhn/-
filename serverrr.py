@@ -55,7 +55,7 @@ def form():
         if len(request.form['fullname']) < 5 and not request.form['fullname'].isalpha():
             flash('Ошибка в имени. Сообщение не отправлено!', category='error')
         else:
-            flash('Сообщение принято!')      
+            flash('Сообщение принято!', category='success')      
         for item in request.form:
             print(item, request.form[item])
     return render_template('form.html')
