@@ -1,0 +1,28 @@
+def new_sticker(update: Update, context: CallbackContext):
+    sticker_id = update.message.sticker.file_id
+    for keyword in stickers:
+        if sticker_id == stickers[keyword]:
+            update.message.reply_text('У меня тоже такой есть!')
+            update.message.reply_sticker(sticker_id)
+            break
+    else:
+        context.user_data['new_sticker'] = sticker_id
+        update.message.reply_text('Скажи мне ключевое слово для этого стикера, и я его запомню')
+
+
+def new_keyword(update: Update, context: CallbackContext):
+    if 'new_sticker' not in context.user_data:
+        say_smth(update, context)
+    else:
+        keyword = update.message.text
+        sticker_id = context.user_data['new_sticker']
+        insert_sticker(keyword, sticker_id)
+        context.user_data.clear()
+
+
+sticker_handler = MessageHandler(Filters.sticker, new_sticker)
+
+dispatcher.add_nadler(sticker_handler)
+dispatcher.add_handler(text_handler)
+
+from connect_to_database import stickers, replies, insert_sticker
