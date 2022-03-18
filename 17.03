@@ -16,7 +16,7 @@ def gcd(a: int, b: int) -> int:
     return gcd(b, a % b)
 
 
-def power(a: float, b: int) -> float:
+def power(a: float, n: int) -> float:
     """
     Возводит число a в степень n
     """
@@ -25,3 +25,20 @@ def power(a: float, b: int) -> float:
     elif n % 2 == 0:
         return power(a * a, n // 2)
     return power(a, n - 1) * a
+
+
+def generate_numbers(n: int, m: int, prefix=None) -> None:
+    """
+    Выводит в консоль все перестановки длиной m в системе счисления n
+    """
+    if m == 0:
+        print(*prefix)
+        return
+    prefix = prefix or []
+    for digit in range(n):
+        prefix.append(digit)
+        generate_numbers(n, m - 1, prefix)
+        prefix.pop()
+
+
+generate_numbers(100, 100)
